@@ -86,6 +86,22 @@ class FaceModel:
     aligned = np.transpose(nimg, (2,0,1))
     return aligned
 
+  def get_input_2(self, face_img):
+    ret = self.detector.detect_face(face_img, det_type = self.args.det)
+    if ret is None:
+      return None
+    bbox, points = ret
+    if bbox.shape[0]==0:
+      return None
+    # choose 1 bbox with the highest probability 
+    bbox = bbox[0,0:4]
+    points = points[0,:].reshape((2,5)).T
+    nimg = face_preprocess.preprocess(face_img, bbox, points, image_size='112,112')
+    nimg = cv2.cvtColor(nimg, cv2.COLOR_BGR2RGB)
+
+    aligned = np.transpose(nimg, (2,0,1))
+    return bbox, aligned
+
   def get_feature(self, aligned):
     input_blob = np.expand_dims(aligned, axis=0)
     data = mx.nd.array(input_blob)
@@ -108,4 +124,27 @@ class FaceModel:
     age = int(sum(a))
 
     return gender, age
-
+    
+  def infer(self, faces, target_embs, tta=False):
+      '''
+      faces : list of PIL Image
+      target_embs : [n, 512] computed embeddings of faces in facebank
+      names : recorded names of faces in facebank
+      tta : test time augmentation (hfilp, that's all)
+      '''
+      embs = []
+      # for img in faces: # for multi faces
+      img = faces
+      if tta:
+          mirror = trans.functional.hflip(img)
+          emb = torch.from_numpy(self.get_feature(img))
+          emb_mirror = torch.from_numpy(self.get_feature(mirror))
+          embs.append(l2_norm(emb + emb_mirror))
+      else:
+          embs.append(torch.from_numpy(self.get_feature(img)))
+      source_embs = torch.cat(embs)
+      diff = source_embs.unsqueeze(-1) - target_embs.transpose(1,0).unsqueeze(0)
+      dist = torch.sum(torch.pow(diff, 2), dim=1)
+      minimum, min_idx = torch.min(dist, dim=1)
+      min_idx[minimum > self.threshold] = -1 # if no match, set idx to -1
+      return min_idx, minimum
