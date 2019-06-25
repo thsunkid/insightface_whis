@@ -75,9 +75,13 @@ def count_flops(sym, **data_shapes):
       input_nodeid = node['inputs'][0][0]
       input_shape = nodeid_shape[input_nodeid]
       output_filter = output_shape[1]
-      input_filter = input_shape[1]*input_shape[2]*input_shape[3]
+      try:
+        print(len(input_shape),node)
+        input_filter = input_shape[1]*input_shape[2]*input_shape[3]
+        flops = count_fc_flops(input_filter, output_filter, attr)
+      except:
+        print(len(input_shape),node)
       #assert len(input_shape)==4 and input_shape[2]==1 and input_shape[3]==1
-      flops = count_fc_flops(input_filter, output_filter, attr)
     #print(node, flops)
     FLOPs += flops
 
