@@ -19,7 +19,7 @@ from mtcnn_detector import MtcnnDetector
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'src', 'common'))
 import face_image
 import face_preprocess
-
+import torch
 
 def do_flip(data):
   for idx in range(data.shape[0]):

@@ -6,6 +6,7 @@ from datetime import datetime
 import face_model
 import numpy as np
 
+
 parser = argparse.ArgumentParser(description='take a picture')
 parser.add_argument('--name','-n', default='unknown', type=str,help='input the name of the recording person')
 parser.add_argument('--image-size', default='112,112', help='')
@@ -17,8 +18,12 @@ parser.add_argument('--flip', default=0, type=int, help='whether do lr flip aug'
 parser.add_argument('--threshold', default=1.24, type=float, help='ver dist threshold')
 args = parser.parse_args()
 
-data_path = Path('../facebank')/args.name
-save_path = data_path
+
+data_path = Path('../facebank')
+if not data_path.exists():
+    data_path.mkdir()
+
+save_path = data_path/args.name
 if not save_path.exists():
     save_path.mkdir()
 
