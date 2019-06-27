@@ -4,23 +4,13 @@ from torchvision import transforms as trans
 
 def get_config():
     conf = edict()
-    conf.data_path = Path('../facebank')
-    conf.work_path = Path('models/')
-    conf.model_path = conf.work_path/'models'
-    conf.log_path = conf.work_path/'log'
-    conf.save_path = conf.work_path/'save'
-    conf.input_size = [112,112]
-    conf.embedding_size = 512
-    conf.use_mobilfacenet = False
-    conf.net_depth = 50
-    conf.drop_ratio = 0.6
-    conf.net_mode = 'ir_se' # or 'ir'
-
-#--------------------Inference Config ------------------------
-    conf.facebank_path = conf.data_path
-    conf.threshold = 1.5
-    conf.face_limit = 10 
-    #when inference, at maximum detect 10 faces in one image, my laptop is slow
-    conf.min_face_size = 30 
-    # the larger this value, the faster deduction, comes with tradeoff in small faces
+    conf.facebank_path = Path('../facebank') #file data
+    conf.model_path = '../models/model-y1-test2/model,0' #link of models
+    conf.image_size = '112,112' # size of face boudingbox
+    conf.embedding_size = 128 # size of vector of face
+    conf.gpu = -1  # gpu id, < 0 means using CPU
+    conf.flip = 0 # doi xung guong
+    conf.det = 0 # mtcnn option, 1 means using R+O, 0 means using all net (P R O)
+    conf.threshold = 0.8 #ver dist threshold
+    conf.resize_ratio = 0.25 #
     return conf

@@ -35,6 +35,7 @@ def prepare_facebank(conf, model, tta = False):
                         print("Use MTCNN to extract face!")
                         # feed to MTCNN
                         img = model.get_input(img)
+                    
                     with torch.no_grad():
                         if tta:
                             mirror = trans.functional.hflip(img)
@@ -45,6 +46,8 @@ def prepare_facebank(conf, model, tta = False):
                             emb = torch.from_numpy(model.get_feature(img))
                             emb = emb.reshape(1,emb.shape[0])
                             embs.append(emb)
+                            
+                    
         if len(embs) == 0:
             continue
         embedding = torch.cat(embs).mean(0,keepdim=True)
