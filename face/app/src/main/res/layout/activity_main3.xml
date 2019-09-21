@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="12"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6"
+        android:background="@android:color/background_dark"
+        android:orientation="horizontal"
+        android:weightSum="100">
+
+        <FrameLayout
+            android:background="#02122B"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="20.5"
+            >
+        </FrameLayout>
+
+        <SurfaceView
+            android:id="@+id/frame"
+            android:background="@drawable/apple1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="59">
+
+        </SurfaceView>
+
+        <FrameLayout
+            android:background="#02122B"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="20.5">
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_weight="2.5"
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:background="#FFFFFF"
+        >
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgView"
+            android:layout_width="99dp"
+            android:layout_height="118dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/girl"
+            app:civ_border_color="@color/headings"
+            app:civ_border_width="2dp" />
+
+        <ImageView
+            android:id="@+id/imgtick"
+            android:layout_width="108dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/tick"
+
+            />
+
+        <!--        <TextView-->
+        <!--            android:layout_gravity="center_horizontal"-->
+        <!--            android:layout_marginTop="10dp"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="Điểm Danh Thành Công"-->
+        <!--            android:fontFamily="@font/bold"-->
+        <!--            android:textSize="30sp"-->
+        <!--            android:gravity="center"-->
+        <!--            android:textColor="#03A9F4"-->
+        <!--            />-->
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3.5"
+        android:background="#FFFFFF"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txt1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_weight="0.5"
+                android:fontFamily="@font/bold"
+                android:text="Tên:"
+                android:textColor="#000000"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/txtname"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_weight="0.5"
+                android:fontFamily="@font/bold"
+                android:text="Kane Nguyen"
+                android:textColor="#03A9F4"
+                android:textSize="17sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txt2"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_weight="0.5"
+                android:fontFamily="@font/bold"
+                android:text="Chức Vụ:"
+                android:textColor="#000000"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/txtpos"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_weight="0.5"
+                android:fontFamily="@font/regular"
+                android:text="CEO"
+                android:textColor="#03A9F4"
+                android:textSize="17sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txt3"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_weight="0.5"
+                android:fontFamily="@font/bold"
+                android:text="Thời gian: "
+                android:textColor="#000000"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/txttime"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_weight="0.5"
+                android:fontFamily="@font/regular"
+                android:text="12am"
+                android:textColor="#03A9F4"
+                android:textSize="17sp" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/buttonsingup"
+            android:layout_width="120dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.2"
+            android:background="@drawable/mybtn"
+            android:fontFamily="@font/bold"
+            android:text="Đăng Ký"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+        <FrameLayout
+            android:layout_weight="0.2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+        </FrameLayout>
+
+
+    </LinearLayout>
+</LinearLayout>
